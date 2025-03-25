@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>竞赛详情 - CyberContest</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cyber-blue': '#00f0ff',
+                        'cyber-pink': '#ff00ff',
+                        'cyber-purple': '#9900ff',
+                        'cyber-yellow': '#ffff00',
+                        'cyber-dark': '#0a0a1a',
+                        'cyber-darker': '#050510',
+                    },
+                    fontFamily: {
+                        'cyber': ['Orbitron', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 5px #00f0ff, 0 0 10px #00f0ff',
+                        'neon-pink': '0 0 5px #ff00ff, 0 0 10px #ff00ff',
+                        'neon-purple': '0 0 5px #9900ff, 0 0 10px #9900ff',
+                        'neon-yellow': '0 0 5px #ffff00, 0 0 10px #ffff00',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts - Orbitron for cyber style -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0a1a;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 0, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 240, 255, 0.1) 100%);
+        }
+        .cyber-border {
+            position: relative;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+        }
+        .cyber-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            z-index: -1;
+        }
+        .cyber-border::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 1px solid rgba(153, 0, 255, 0.2);
+            z-index: -2;
+        }
+        .glitch-text {
+            position: relative;
+            animation: glitch 3s infinite;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+            2% { text-shadow: 3px 0 0 rgba(0,240,255,0.5), -3px 0 0 rgba(255,0,255,0.5); }
+            4% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+            50% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+            52% { text-shadow: 2px 0 0 rgba(0,240,255,0.5), -2px 0 0 rgba(255,0,255,0.5); }
+            54% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+            100% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+        }
+        .neon-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.8), transparent);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(0, 240, 255, 0.2);
+            border: 2px solid rgba(0, 240, 255, 0.5);
+            z-index: 1;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 20px;
+            bottom: -20px;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(0, 240, 255, 0.5), rgba(0, 240, 255, 0.1));
+        }
+        .timeline-item:last-child::after {
+            display: none;
+        }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen">
+    <!-- 导航栏 -->
+    <nav class="bg-cyber-darker border-b border-cyber-blue/30 sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-microchip text-cyber-blue mr-2 text-xl"></i>
+                        <span class="text-cyber-blue font-cyber text-xl font-bold glitch-text">CYBER<span class="text-cyber-pink">CONTEST</span></span>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="index.html" class="text-white hover:text-cyber-blue transition duration-300 font-cyber">首页</a>
+                    <a href="competitions.html" class="text-cyber-blue transition duration-300 font-cyber">竞赛列表</a>
+                    <a href="resources.html" class="text-white hover:text-cyber-blue transition duration-300 font-cyber">学习资源</a>
+                    <a href="teams.html" class="text-white hover:text-cyber-blue transition duration-300 font-cyber">团队招募</a>
+                    <a href="about.html" class="text-white hover:text-cyber-blue transition duration-300 font-cyber">关于我们</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="cyber-border bg-cyber-darker px-4 py-2 text-cyber-blue hover:bg-cyber-blue/10 transition duration-300 font-cyber text-sm">
+                        <i class="fas fa-user-astronaut mr-1"></i> 登录
+                    </button>
+                    <button class="md:hidden text-white hover:text-cyber-blue">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 竞赛详情头部 -->
+    <header class="py-12 bg-cyber-darker relative overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <!-- 网格背景 -->
+            <div class="absolute inset-0" style="background-image: linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px); background-size: 20px 20px;"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-start gap-8">
+                <!-- 竞赛Logo -->
+                <div class="w-full md:w-1/3 lg:w-1/4 mb-6 md:mb-0">
+                    <div class="cyber-border bg-cyber-darker p-6 flex items-center justify-center aspect-square">
+                        <i class="fas fa-laptop-code text-8xl text-cyber-blue"></i>
+                    </div>
+                </div>
+                
+                <!-- 竞赛基本信息 -->
+                <div class="w-full md:w-2/3 lg:w-3/4">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-cyber-blue/20 text-cyber-blue text-xs px-2 py-1 font-cyber">计算机科学</span>
+                        <span class="bg-cyber-yellow/20 text-cyber-yellow text-xs px-2 py-1 font-cyber">全国性</span>
+                        <span class="bg-cyber-purple/20 text-cyber-purple text-xs px-2 py-1 font-cyber">团队赛</span>
+                    </div>
+                    <h1 class="text-3xl md:text-4xl font-bold font-cyber mb-4">全国大学生计算机设计大赛</h1>
+                    <p class="text-gray-400 mb-6">面向全国高校学生的计算机应用能力竞赛，涵盖软件应用、人工智能、数字媒体等多个领域。</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="cyber-border bg-cyber-darker/70 p-4">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-calendar-alt text-cyber-blue mr-2"></i>
+                                <span class="text-white font-cyber">报名时间</span>
+                            </div>
+                            <p class="text-gray-400">2023-09-01 至 2023-12-15</p>
+                        </div>
+                        <div class="cyber-border bg-cyber-darker/70 p-4">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-users text-cyber-pink mr-2"></i>
+                                <span class="text-white font-cyber">参赛人数</span>
+                            </div>
+                            <p class="text-gray-400">3-5人/团队</p>
+                        </div>
+                        <div class="cyber-border bg-cyber-darker/70 p-4">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-trophy text-cyber-yellow mr-2"></i>
+                                <span class="text-white font-cyber">奖项设置</span>
+                            </div>
+                            <p class="text-gray-400">特等奖、一二三等奖</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#" class="cyber-border bg-cyber-blue/10 hover:bg-cyber-blue/20 text-cyber-blue px-6 py-3 font-cyber transition duration-300">
+                            <i class="fas fa-file-alt mr-2"></i> 下载竞赛文档
+                        </a>
+                        <a href="teams.html" class="cyber-border bg-cyber-pink/10 hover:bg-cyber-pink/20 text-cyber-pink px-6 py-3 font-cyber transition duration-300">
+                            <i class="fas fa-users mr-2"></i> 寻找队友
+                        </a>
+                        <button class="cyber-border bg-cyber-purple/10 hover:bg-cyber-purple/20 text-cyber-purple px-6 py-3 font-cyber transition duration-300">
+                            <i class="fas fa-star mr-2"></i> 收藏竞赛
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 装饰性元素 -->
+        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyber-blue to-transparent"></div>
+    </header>
+
+    <!-- 竞赛详情内容 -->
+    <section class="py-16 bg-cyber-dark">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- 左侧：竞赛详情 -->
+                <div class="lg:col-span-2">
+                    <!-- 竞赛介绍 -->
+                    <div class="cyber-border bg-cyber-darker p-6 mb-8">
+                        <h2 class="text-2xl font-cyber font-bold mb-6 flex items-center">
+                            <i class="fas fa-info-circle text-cyber-blue mr-3"></i>
+                            <span>竞赛介绍</span>
+                        </h2>
+                        <div class="space-y-4 text-gray-300">
+                            <p>全国大学生计算机设计大赛是由教育部高等学校计算机类专业教学指导委员会、软件工程专业教学指导委员会和大学计算机课程教学指导委员会联合举办的全国性赛事。</p>
+                            <p>大赛旨在激发学生学习计算机科学与技术的兴趣和潜能，提高学生运用信息技术解决实际问题的综合能力，为培养德智体美劳全面发展的创新型人才搭建展示平台。</p>
+                            <p>大赛分为软件应用与开发、微课与教学辅助、物联网应用、大数据应用、人工智能应用、信息可视化设计、数字媒体设计、计算机音乐创作、国际生"一带一路"等多个类别。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 参赛要求 -->
+                    <div class="cyber-border bg-cyber-darker p-6 mb-8">
+                        <h2 class="text-2xl font-cyber font-bold mb-6 flex items-center">
+                            <i class="fas fa-clipboard-list text-cyber-pink mr-3"></i>
+                            <span>参赛要求</span>
+                        </h2>
+                        <div class="space-y-4 text-gray-300">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-cyber-pink mt-1 mr-3"></i>
+                                <div>
+                                    <h3 class="text-white font-semibold mb-1">参赛对象</h3>
+                                    <p>全国普通高等学校全日制在校专科生、本科生、研究生（不含在职生）均可参赛。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-cyber-pink mt-1 mr-3"></i>
+                                <div>
+                                    <h3 class="text-white font-semibold mb-1">团队组成</h3>
+                                    <p>每件参赛作品的参赛学生不多于5人，指导教师不多于2人。同一参赛作品只能选择一个类别参赛。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-cyber-pink mt-1 mr-3"></i>
+                                <div>
+                                    <h3 class="text-white font-semibold mb-1">作品要求</h3>
+                                    <p>参赛作品必须是参赛学生原创，不得侵犯他人知识产权。参赛作品的设计思想、创意、表达方式需体现创新性、科学性和艺术性。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-cyber-pink mt-1 mr-3"></i>
+                                <div>
+                                    <h3 class="text-white font-semibold mb-1">提交材料</h3>
+                                    <p>参赛作品需提交作品设计说明书、源代码、可执行程序、演示视频等材料，具体要求以官方通知为准。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 竞赛流程 -->
+                    <div class="cyber-border bg-cyber-darker p-6 mb-8">
+                        <h2 class="text-2xl font-cyber font-bold mb-6 flex items-center">
+                            <i class="fas fa-tasks text-cyber-purple mr-3"></i>
+                            <span>竞赛流程</span>
+                        </h2>
+                        <div class="pl-12 relative">
+                            <div class="timeline-item relative pb-10">
+                                <h3 class="text-white font-cyber font-semibold mb-2">报名阶段</h3>
+                                <p class="text-gray-300">2023年9月1日至12月15日，参赛团队通过官方网站完成报名，提交团队信息和作品概述。</p>
+                            </div>
+                            <div class="timeline-item relative pb-10">
+                                <h3 class="text-white font-cyber font-semibold mb-2">初赛阶段</h3>
+                                <p class="text-gray-300">2024年1月10日至2月28日，各参赛团队提交作品初稿，由各省级赛区组织专家进行评审，选拔优秀作品进入决赛。</p>
+                            </div>
+                            <div class="timeline-item relative pb-10">
+                                <h3 class="text-white font-cyber font-semibold mb-2">决赛阶段</h3>
+                                <p class="text-gray-300">2024年4月15日至5月30日，入围决赛的团队提交完整作品，并参加现场答辩和展示，由全国专家组评选出最终获奖作品。</p>
+                            </div>
+                            <div class="timeline-item relative">
+                                <h3 class="text-white font-cyber font-semibold mb-2">颁奖典礼</h3>
+                                <p class="text-gray-300">2024年6月，举行全国总决赛颁奖典礼，公布获奖名单并颁发证书和奖金。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 评分标准 -->
+                    <div class="cyber-border bg-cyber-darker p-6">
+                        <h2 class="text-2xl font-cyber font-bold mb-6 flex items-center">
+                            <i class="fas fa-star-half-alt text-cyber-yellow mr-3"></i>
+                            <span>评分标准</span>
+                        </h2>
+                        <div class="space-y-6 text-gray-300">
+                            <div>
+                                <h3 class="text-white font-cyber font-semibold mb-3 flex items-center">
+                                    <i class="fas fa-lightbulb text-cyber-yellow mr-2"></i> 创新性（30%）
+                                </h3>
+                                <p>作品的创意、设计思想和解决方案的创新程度，以及技术应用的创新性。</p>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-cyber font-semibold mb-3 flex items-center">
+                                    <i class="fas fa-cogs text-cyber-yellow mr-2"></i> 技术实现（25%）
+                                </h3>
+                                <p>作品的技术难度、实现质量、代码规范性和系统稳定性等。</p>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-cyber font-semibold mb-3 flex items-center">
+                                    <i class="fas fa-users text-cyber-yellow mr-2"></i> 实用性（20%）
+                                </h3>
+                                <p>作品解决实际问题的有效性，以及应用场景的广泛性和可行性。</p>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-cyber font-semibold mb-3 flex items-center">
+                                    <i class="fas fa-palette text-cyber-yellow mr-2"></i> 界面设计（15%）
+                                </h3>
+                                <p>作品的用户界面设计、交互体验和视觉效果等。</p>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-cyber font-semibold mb-3 flex items-center">
+                                    <i class="fas fa-file-alt text-cyber-yellow mr-2"></i> 文档质量（10%）
+                                </h3>
+                                <p>作品说明书、演示视频等文档的完整性、规范性和表达清晰度。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧：相关信息 -->
+                <div class="lg:col-span-1">
+                    <!-- 主办方信息 -->
+                    <div class="cyber-border bg-cyber-darker p-6 mb-8">
+                        <h2 class="text-xl font-cyber font-bold mb-4 flex items-center">
+                            <i class="fas fa-building text-cyber-blue mr-2"></i>
+                            <span>主办方信息</span>
+                        </h2>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-university text-cyber-blue mt-1 mr-2"></i>
+                                <span>教育部高等学校计算机类专业教学指导委员会</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-university text-cyber-blue mt-1 mr-2"></i>
+                                <span>教育部高等学校软件工程专业教学指导委员会</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-university text-cyber-blue mt-1 mr-2"></i>
+                                <span>教育部高等学校大学计算机课程教学指导委员会</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <a href="#" class="text-cyber-blue hover:text-cyber-pink transition duration-300 text-sm flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> 访问官方网站
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 联系方式 -->
+                    <div class="cyber-border bg-cyber-darker p-6 mb-8">
+                        <h2 class="text-xl font-cyber font-bold mb-4 flex items-center">
+                            <i class="fas fa-address-card text-cyber-pink mr-2"></i>
+                            <span>联系方式</span>
+                        </h2>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-envelope text-cyber-pink mt-1 mr-2"></i>
+                                <span>邮箱：contest@example.com</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-phone-alt text-cyber-pink mt-1 mr-2"></i>
+                                <span>电话：010-12345678</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-comment-alt text-cyber-pink mt-1 mr-2"></i>
+                                <span>QQ群：123456789</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fab fa-weixin text-cyber-pink mt-1 mr-2"></i>
+                                <span>微信公众号：计算机设计大赛</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 相关资源 -->
+                    <div class="cyber-border bg-cyber-darker p-6 mb-8">
+                        <h2 class="text-xl font-cyber font-bold mb-4 flex items-center">
+                            <i class="fas fa-link text-cyber-purple mr-2"></i>
+                            <span>相关资源</span>
+                        </h2>
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="#" class="text-gray-300 hover:text-cyber-purple transition duration-300 flex items-center">
+                                    <i class="fas fa-file-pdf text-cyber-purple mr-2"></i>
+                                    <span>竞赛章程.pdf</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-300 hover:text-cyber-purple transition duration-300 flex items-center">
+                                    <i class="fas fa-file-word text-cyber-purple mr-2"></i>
+                                    <span>参赛作品模板.docx</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-300 hover:text-cyber-purple transition duration-300 flex items-center">
+                                    <i class="fas fa-file-powerpoint text-cyber-purple mr-2"></i>
+                                    <span>答辩PPT模板.pptx</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-300 hover:text-cyber-purple transition duration-300 flex items-center">
+                                    <i class="fas fa-video text-cyber-purple mr-2"></i>
+                                    <span>往届优秀作品展示</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 往届回顾 -->
+                    <div class="cyber-border bg-cyber-darker p-6">
+                        <h2 class="text-xl font-cyber font-bold mb-4 flex items-center">
+                            <i class="fas fa-history text-cyber-yellow mr-2"></i>
+                            <span>往届回顾</span>
+                        </h2>
+                        <div class="space-y-4">
+                            <div class="border-b border-cyber-yellow/20 pb-3">
+                                <h3 class="text-white font-cyber mb-2">2023年度</h3>
+                                <p class="text-gray-400 text-sm mb-2">共有来自全国1200多所高校的15000余支队伍参赛，最终评选出特等奖50项，一等奖300项。</p>
+                                <a href="#" class="text-cyber-yellow hover:text-cyber-pink transition duration-300 text-xs flex items-center">
+                                    查看详情 <i class="fas fa-chevron-right ml-1"></i>
+                                </a>
+                            </div>
+                            <div class="border-b border-cyber-yellow/20 pb-3">
+                                <h3 class="text-white font-cyber mb-2">2022年度</h3>
+                                <p class="text-gray-400 text-sm mb-2">共有来自全国1100多所高校的13000余支队伍参赛，最终评选出特等奖45项，一等奖280项。</p>
+                                <a href="#" class="text-cyber-yellow hover:text-cyber-pink transition duration-300 text-xs flex items-center">
+                                    查看详情 <i class="fas

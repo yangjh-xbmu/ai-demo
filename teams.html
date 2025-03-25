@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>团队招募 - CyberContest</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cyber-blue': '#00f0ff',
+                        'cyber-pink': '#ff00ff',
+                        'cyber-purple': '#9900ff',
+                        'cyber-yellow': '#ffff00',
+                        'cyber-dark': '#0a0a1a',
+                        'cyber-darker': '#050510',
+                    },
+                    fontFamily: {
+                        'cyber': ['Orbitron', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 5px #00f0ff, 0 0 10px #00f0ff',
+                        'neon-pink': '0 0 5px #ff00ff, 0 0 10px #ff00ff',
+                        'neon-purple': '0 0 5px #9900ff, 0 0 10px #9900ff',
+                        'neon-yellow': '0 0 5px #ffff00, 0 0 10px #ffff00',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts - Orbitron for cyber style -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0a1a;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 0, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 240, 255, 0.1) 100%);
+        }
+        .cyber-border {
+            position: relative;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+        }
+        .cyber-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            z-index: -1;
+        }
+        .cyber-border::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 1px solid rgba(153, 0, 255, 0.2);
+            z-index: -2;
+        }
+        .glitch-text {
+            position: relative;
+            animation: glitch 3s infinite;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+            2% { text-shadow: 3px 0 0 rgba(0,240,255,0.5), -3px 0 0 rgba(255,0,255,0.5); }
+            4% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+            50% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+            52% { text-shadow: 2px 0 0 rgba(0,240,255,0.5), -2px 0 0 rgba(255,0,255,0.5); }
+            54% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+            100% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+        }
+        .neon-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.8), transparent);
+        }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen">
+    <!-- 导航栏 -->
+    <nav class="bg-cyber-darker border-b border-cyber-blue/30 sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-microchip text-cyber-blue mr-2 text-xl"></i>
+                        <span class="text-cyber-blue font-cyber text-xl font-bold glitch-text">CYBER<span class="text-cyber-pink">CONTEST</span></span>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="index.html" class="text-white hover:text-cyber-blue transition duration-300 font-cyber">首页</a>
+                    <a href="competitions.html" class="text-white hover:text-cyber-blue transition duration-300 font-cyber">竞赛列表</a>
+                    <a href="resources.html" class="text-white hover:text-cyber-blue transition duration-300 font-cyber">学习资源</a>
+                    <a href="teams.html" class="text-cyber-blue transition duration-300 font-cyber">团队招募</a>
+                    <a href="about.html" class="text-white hover:text-cyber-blue transition duration-300 font-cyber">关于我们</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="cyber-border bg-cyber-darker px-4 py-2 text-cyber-blue hover:bg-cyber-blue/10 transition duration-300 font-cyber text-sm">
+                        <i class="fas fa-user-astronaut mr-1"></i> 登录
+                    </button>
+                    <button class="md:hidden text-white hover:text-cyber-blue">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <header class="py-12 bg-cyber-darker relative overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <!-- 网格背景 -->
+            <div class="absolute inset-0" style="background-image: linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px); background-size: 20px 20px;"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="text-4xl font-bold font-cyber mb-4 text-center">
+                <i class="fas fa-users text-cyber-pink mr-3"></i>
+                <span class="text-white">团队<span class="text-cyber-pink">招募</span></span>
+            </h1>
+            <p class="text-gray-400 text-center max-w-2xl mx-auto">寻找志同道合的伙伴，组建你的梦之队</p>
+        </div>
+        <!-- 装饰性元素 -->
+        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyber-pink to-transparent"></div>
+    </header>
+
+    <!-- 团队招募功能区 -->
+    <section class="py-12 bg-cyber-dark">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- 左侧：发布招募 -->
+                <div class="lg:col-span-1">
+                    <div class="cyber-border bg-cyber-darker p-6 sticky top-24">
+                        <h2 class="text-2xl font-cyber font-bold mb-6 flex items-center">
+                            <i class="fas fa-bullhorn text-cyber-pink mr-2"></i>
+                            <span>发布招募</span>
+                        </h2>
+                        <form>
+                            <div class="mb-4">
+                                <label class="block text-sm font-cyber mb-2">竞赛类型</label>
+                                <select class="w-full bg-cyber-dark border border-cyber-pink/30 text-white py-2 px-4 focus:outline-none focus:border-cyber-pink transition duration-300 appearance-none">
+                                    <option value="">选择竞赛类型</option>
+                                    <option value="computer">计算机科学</option>
+                                    <option value="ai">人工智能</option>
+                                    <option value="innovation">创新创业</option>
+                                    <option value="design">设计艺术</option>
+                                    <option value="engineering">工程技术</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-cyber mb-2">招募标题</label>
+                                <input type="text" placeholder="简洁明了的招募标题" class="w-full bg-cyber-dark border border-cyber-pink/30 text-white py-2 px-4 focus:outline-none focus:border-cyber-pink transition duration-300">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-cyber mb-2">需要角色</label>
+                                <div class="flex flex-wrap gap-2">
+                                    <label class="inline-flex items-center bg-cyber-dark border border-cyber-pink/30 px-3 py-2 cursor-pointer hover:bg-cyber-pink/10 transition duration-300">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>程序开发</span>
+                                    </label>
+                                    <label class="inline-flex items-center bg-cyber-dark border border-cyber-pink/30 px-3 py-2 cursor-pointer hover:bg-cyber-pink/10 transition duration-300">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>UI/UX设计</span>
+                                    </label>
+                                    <label class="inline-flex items-center bg-cyber-dark border border-cyber-pink/30 px-3 py-2 cursor-pointer hover:bg-cyber-pink/10 transition duration-300">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>算法专家</span>
+                                    </label>
+                                    <label class="inline-flex items-center bg-cyber-dark border border-cyber-pink/30 px-3 py-2 cursor-pointer hover:bg-cyber-pink/10 transition duration-300">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>项目管理</span>
+                                    </label>
+                                    <label class="inline-flex items-center bg-cyber-dark border border-cyber-pink/30 px-3 py-2 cursor-pointer hover:bg-cyber-pink/10 transition duration-300">
+                                        <input type="checkbox" class="mr-2">
+                                        <span>创意策划</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-cyber mb-2">招募详情</label>
+                                <textarea rows="5" placeholder="详细描述你的项目和需求" class="w-full bg-cyber-dark border border-cyber-pink/30 text-white py-2 px-4 focus:outline-none focus:border-cyber-pink transition duration-300"></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-cyber mb-2">联系方式</label>
+                                <input type="text" placeholder="QQ/微信/邮箱等联系方式" class="w-full bg-cyber-dark border border-cyber-pink/30 text-white py-2 px-4 focus:outline-none focus:border-cyber-pink transition duration-300">
+                            </div>
+                            <button type="submit" class="w-full cyber-border bg-cyber-pink/10 hover:bg-cyber-pink/20 text-cyber-pink py-3 font-cyber transition duration-300">
+                                <i class="fas fa-paper-plane mr-2"></i> 发布招募
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 右侧：招募列表 -->
+                <div class="lg:col-span-2">
+                    <!-- 筛选器 -->
+                    <div class="cyber-border bg-cyber-darker p-4 mb-6">
+                        <div class="flex flex-wrap gap-4">
+                            <select class="bg-cyber-dark border border-cyber-blue/30 text-white py-2 px-4 focus:outline-none focus:border-cyber-blue transition duration-300 appearance-none">
+                                <option value="">所有竞赛类型</option>
+                                <option value="computer">计算机科学</option>
+                                <option value="ai">人工智能</option>
+                                <option value="innovation">创新创业</option>
+                                <option value="design">设计艺术</option>
+                                <option value="engineering">工程技术</option>
+                            </select>
+                            <select class="bg-cyber-dark border border-cyber-blue/30 text-white py-2 px-4 focus:outline-none focus:border-cyber-blue transition duration-300 appearance-none">
+                                <option value="">所有角色需求</option>
+                                <option value="developer">程序开发</option>
+                                <option value="designer">UI/UX设计</option>
+                                <option value="algorithm">算法专家</option>
+                                <option value="manager">项目管理</option>
+                                <option value="planner">创意策划</option>
+                            </select>
+                            <div class="relative flex-grow">
+                                <input type="text" placeholder="搜索关键词..." class="w-full bg-cyber-dark border border-cyber-blue/30 text-white py-2 px-4 pr-10 focus:outline-none focus:border-cyber-blue transition duration-300">
+                                <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-cyber-blue">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 招募卡片列表 -->
+                    <div class="space-y-6">
+                        <!-- 招募卡片 1 -->
+                        <div class="cyber-border bg-cyber-darker p-6 hover:shadow-neon-blue transition duration-500">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="bg-cyber-blue/20 text-cyber-blue text-xs px-2 py-1 font-cyber">计算机科学</span>
+                                <span class="text-gray-400 text-sm"><i class="fas fa-clock mr-1"></i> 3天前</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 font-cyber text-white">寻找全国大学生计算机设计大赛队友</h3>
+                            <p class="text-gray-400 mb-4">我们是来自北京大学计算机系的两名学生，正在准备参加全国大学生计算机设计大赛，项目方向是智能医疗辅助系统。目前需要1名UI设计师和1名算法工程师加入团队。</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-cyber-darker border border-cyber-blue/30 text-cyber-blue text-xs px-2 py-1">UI/UX设计</span>
+                                <span class="bg-cyber-darker border border-cyber-blue/30 text-cyber-blue text-xs px-2 py-1">算法专家</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm"><i class="fas fa-user mr-1"></i> 张同学</span>
+                                <button class="cyber-border bg-cyber-blue/10 hover:bg-cyber-blue/20 text-cyber-blue px-4 py-2 text-sm font-cyber transition duration-300">
+                                    <i class="fas fa-paper-plane mr-1"></i> 联系Ta
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 招募卡片 2 -->
+                        <div class="cyber-border bg-cyber-darker p-6 hover:shadow-neon-purple transition duration-500">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="bg-cyber-purple/20 text-cyber-purple text-xs px-2 py-1 font-cyber">人工智能</span>
+                                <span class="text-gray-400 text-sm"><i class="fas fa-clock mr-1"></i> 1天前</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 font-cyber text-white">AI创新大赛团队招募</h3>
+                            <p class="text-gray-400 mb-4">我们是一支专注于计算机视觉的团队，已有3名成员，均有相关比赛经验。现招募1名熟悉PyTorch的算法工程师和1名前端开发，共同参加中国大学生人工智能创新大赛。</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-cyber-darker border border-cyber-purple/30 text-cyber-purple text-xs px-2 py-1">算法专家</span>
+                                <span class="bg-cyber-darker border border-cyber-purple/30 text-cyber-purple text-xs px-2 py-1">程序开发</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm"><i class="fas fa-user mr-1"></i> 李同学</span>
+                                <button class="cyber-border bg-cyber-purple/10 hover:bg-cyber-purple/20 text-cyber-purple px-4 py-2 text-sm font-cyber transition duration-300">
+                                    <i class="fas fa-paper-plane mr-1"></i> 联系Ta
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 招募卡片 3 -->
+                        <div class="cyber-border bg-cyber-darker p-6 hover:shadow-neon-pink transition duration-500">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="bg-cyber-pink/20 text-cyber-pink text-xs px-2 py-1 font-cyber">创新创业</span>
+                                <span class="text-gray-400 text-sm"><i class="fas fa-clock mr-1"></i> 5小时前</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 font-cyber text-white">互联网+创新创业大赛寻找队友</h3>
+                            <p class="text-gray-400 mb-4">我们是一个致力于解决校园二手交易问题的创业团队，已有商业模式和原型设计。现寻找1名产品经理和1名技术开发，一起参加互联网+大学生创新创业大赛。</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-cyber-darker border border-cyber-pink/30 text-cyber-pink text-xs px-2 py-1">项目管理</span>
+                                <span class="bg-cyber-darker border border-cyber-pink/30 text-cyber-pink text-xs px-2 py-1">程序开发</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm"><i class="fas fa-user mr-1"></i> 王同学</span>
+                                <button class="cyber-border bg-cyber-pink/10 hover:bg-cyber-pink/20 text-cyber-pink px-4 py-2 text-sm font-cyber transition duration-300">
+                                    <i class="fas fa-paper-plane mr-1"></i> 联系Ta
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 招募卡片 4 -->
+                        <div class="cyber-border bg-cyber-darker p-6 hover:shadow-neon-yellow transition duration-500">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="bg-cyber-yellow/20 text-cyber-yellow text-xs px-2 py-1 font-cyber">设计艺术</span>
+                                <span class="text-gray-400 text-sm"><i class="fas fa-clock mr-1"></i> 2天前</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 font-cyber text-white">广告艺术大赛团队组建</h3>
+                            <p class="text-gray-400 mb-4">我是视觉传达专业学生，擅长平面设计和品牌策划，正在组建团队参加全国大学生广告艺术大赛。需要1名创意文案和1名视频制作人员，一起打造有创意的广告作品。</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-cyber-darker border border-cyber-yellow/30 text-cyber-yellow text-xs px-2 py-1">创意策划</span>
+                                <span class="bg-cyber-darker border border-cyber-yellow/30 text-cyber-yellow text-xs px-2 py-1">UI/UX设计</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm"><i class="fas fa-user mr-1"></i> 陈同学</span>
+                                <button class="cyber-border bg-cyber-yellow/10 hover:bg-cyber-yellow/20 text-cyber-yellow px-4 py-2 text-sm font-cyber transition duration-300">
+                                    <i class="fas fa-paper-plane mr-1"></i> 联系Ta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 分页 -->
+                    <div class="mt-8 flex justify-center">
+                        <div class="cyber-border inline-flex">
+                            <a href="#" class="px-4 py-2 border-r border-cyber-blue/30 text-cyber-blue hover:bg-cyber-blue/10 transition duration-300">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                            <a href="#" class="px-4 py-2 border-r border-cyber-blue/30 bg-cyber-blue/20 text-white">1</a>
+                            <a href="#" class="px-4 py-2 border-r border-cyber-blue/30 text-cyber-blue hover:bg-cyber-blue/10 transition duration-300">2</a>
+                            <a href="#" class="px-4 py-2 border-r border-cyber-blue/30 text-cyber-blue hover:bg-cyber-blue/10 transition duration-300">3</a>
+                            <a href="#" class="px-4 py-2 text-cyber-blue hover:bg-cyber-blue/10 transition duration-300">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 团队组建技巧 -->
+    <section class="py-16 bg-gradient-to-b from-cyber-dark to-cyber-darker">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-cyber font-bold mb-10 text-center">
+                <i class="fas fa-lightbulb text-cyber-yellow mr-2"></i>
+                <span class="text-white">团队组建<span class="text-cyber-yellow">技巧</span></span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 技巧卡片 1 -->
+                <div class="cyber-border bg-cyber-darker p-6 hover:shadow-neon-yellow transition duration-500">
+                    <div class="w-12 h-12 flex items-center justify-center bg-cyber-yellow/20 rounded-full mb-4">
+                        <i class="fas fa-users-cog text-2xl text-cyber-yellow"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-cyber text-white">角色互补</h3>
+                    <p class="text-gray-400">组建团队时注重成员技能的互补性，确保团队拥有完成项目所需的各种专业能力，避免能力重叠或关键技能缺失。</p>
+                </div>
+
+                <!-- 技巧卡片 2 -->
+                <div class="cyber-border bg-cyber-darker p-6 hover:shadow-neon-yellow transition duration-500">
+                    <div class="w-12 h-12 flex items-center justify-center bg-cyber-yellow/20 rounded-full mb-4">
+                        <i class="fas fa-comments text-2xl text-cyber-yellow"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-cyber text-white">沟通至上</h3>
+                    <p class="text-gray-400">建立高效的沟通机制，定期进行团队会议，使用协作工具保持信息透明，确保每个成员都了解项目进展和自己的职责。</p>
+                </div>
+
+                <!-- 技巧卡片 3 -->
+                <div class="cyber-border bg-cyber-darker p-6 hover:shadow-neon-yellow transition duration-500">
+                    <div class="w-12 h-12 flex items-center justify-center bg-cyber-yellow/20 rounded-full mb-4">
+                        <i class="fas fa-tasks text-2xl text-cyber-yellow"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-cyber text-white">明确分工</h3>
+                    <p class="text-gray-400">为每个团队成员设定清晰的职责和目标，制定详细的任务分配计划，避免责任不明确导致的效率低下或工作重复。</p>
+                </div>
+
+                <!-- 技巧卡片 4 -->
+                <div class="cyber-border bg-cyber-darker p-6 hover:shadow-neon-yellow transition duration-500">
+                    <div class="w-12 h-12 flex items-center justify-center bg-cyber-yellow/20 rounded-full mb-4">
+                        <i class="fas fa-calendar-alt text-2xl text-cyber-yellow"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-cyber text-white">时间管理</h3>
+                    <p class="text-gray-400">制定合理的项目时间线，设置关键里程碑，预留缓冲时间应对突发情况，确保团队能够在竞赛截止日期前完成所有工作。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页

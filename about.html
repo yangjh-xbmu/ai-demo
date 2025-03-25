@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - CyberContest</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cyber-blue': '#00f0ff',
+                        'cyber-pink': '#ff00ff',
+                        'cyber-purple': '#9900ff',
+                        'cyber-yellow': '#ffff00',
+                        'cyber-dark': '#0a0a1a',
+                        'cyber-darker': '#050510',
+                    },
+                    fontFamily: {
+                        'cyber': ['Orbitron', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 5px #00f0ff, 0 0 10px #00f0ff',
+                        'neon-pink': '0 0 5px #ff00ff, 0 0 10px #ff00ff',
+                        'neon-purple': '0 0 5px #9900ff, 0 0 10px #9900ff',
+                        'neon-yellow': '0 0 5px #ffff00, 0 0 10px #ffff00',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts - Orbitron for cyber style -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0a1a;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 0, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 240, 255, 0.1) 100%);
+        }
+        .cyber-border {
+            position: relative;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+        }
+        .cyber-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            z-index: -1;
+        }
+        .cyber-border::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 1px solid rgba(153, 0, 255, 0.2);
+            z-index: -2;
+        }
+        .glitch-text {
+            position: relative;
+            animation: glitch 3s infinite;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+            2% { text-shadow: 3px 0 0 rgba(0,240,255,0.5), -3px 0 0 rgba(255,0,255,0.5); }
+            4% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+            50% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+            52% { text-shadow: 2px 0 0 rgba(0,240,255,0.5), -2px 0 0 rgba(255,0,255,0.5); }
+            54% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+            100% { text-shadow: 0 0 0 rgba(0,0,0,0); }
+        }
+        .neon-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.8), transparent);
+        }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen">
+    <!-- 导航栏 -->
+    <nav class="bg-cyber-darker border-b border-cyber-blue/30 sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-microchip text-cyber-blue mr-2 text-xl"></i>
+                        <span class="text-cyber-blue font-cyber text-xl font-bold glitch-text">CYBER<span class="text-cyber-pink">CONTEST</span></span>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="index.html" class="text-white hover:text-cyber-blue transition duration-300 font-cyber">首页</a>
+                    <a href="competitions.html" class="text-white hover:text-cyber-blue transition duration-300 font-cyber">竞赛列表</a>
+                    <a href="resources.html" class="text-white hover:text-cyber-blue transition duration-300 font-cyber">学习资源</a>
+                    <a href="teams.html" class="text-white hover:text-cyber-blue transition duration-300 font-cyber">团队招募</a>
+                    <a href="about.html" class="text-cyber-blue transition duration-300 font-cyber">关于我们</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="cyber-border bg-cyber-darker px-4 py-2 text-cyber-blue hover:bg-cyber-blue/10 transition duration-300 font-cyber text-sm">
+                        <i class="fas fa-user-astronaut mr-1"></i> 登录
+                    </button>
+                    <button class="md:hidden text-white hover:text-cyber-blue">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <header class="py-12 bg-cyber-darker relative overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <!-- 网格背景 -->
+            <div class="absolute inset-0" style="background-image: linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px); background-size: 20px 20px;"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="text-4xl font-bold font-cyber mb-4 text-center">
+                <i class="fas fa-info-circle text-cyber-blue mr-3"></i>
+                <span class="text-white">关于<span class="text-cyber-blue">我们</span></span>
+            </h1>
+            <p class="text-gray-400 text-center max-w-2xl mx-auto">了解我们的使命和团队，以及如何与我们联系</p>
+        </div>
+        <!-- 装饰性元素 -->
+        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyber-blue to-transparent"></div>
+    </header>
+
+    <!-- 关于我们内容 -->
+    <section class="py-16 bg-cyber-dark">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- 左侧：关于我们 -->
+                <div>
+                    <div class="cyber-border bg-cyber-darker p-8 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-cyber-blue/10 rounded-full blur-3xl"></div>
+                        <div class="relative z-10">
+                            <h2 class="text-3xl font-cyber font-bold mb-6 flex items-center">
+                                <i class="fas fa-rocket text-cyber-blue mr-3"></i>
+                                <span>我们的使命</span>
+                            </h2>
+                            <div class="space-y-4 text-gray-300">
+                                <p>CyberContest 致力于为大学生提供最全面、最前沿的竞赛资源平台，帮助学生发现适合自己的竞赛机会，提升专业技能，拓展人际网络。</p>
+                                <p>我们相信，竞赛不仅是一种学习和展示自我的方式，更是培养创新思维、团队协作和解决实际问题能力的重要途径。</p>
+                                <p>通过整合高质量的学习资源、搭建团队招募平台、分享竞赛经验，我们希望能够降低大学生参与竞赛的门槛，让更多学生有机会在竞赛中成长。</p>
+                            </div>
+                            <div class="mt-8">
+                                <h3 class="text-xl font-cyber font-bold mb-4 flex items-center">
+                                    <i class="fas fa-star text-cyber-yellow mr-2"></i>
+                                    <span>我们的价值观</span>
+                                </h3>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-cyber-blue mt-1 mr-2"></i>
+                                        <span><span class="text-white font-semibold">开放共享：</span>我们相信知识应当自由流动，资源应当共享互惠。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-cyber-blue mt-1 mr-2"></i>
+                                        <span><span class="text-white font-semibold">创新驱动：</span>我们鼓励创新思维，推动技术与创意的融合。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-cyber-blue mt-1 mr-2"></i>
+                                        <span><span class="text-white font-semibold">协作共赢：</span>我们促进跨学科、跨领域的团队协作，实现共同成长。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-cyber-blue mt-1 mr-2"></i>
+                                        <span><span class="text-white font-semibold">持续进步：</span>我们追求不断学习和自我完善，始终保持对新知识的渴望。</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧：团队介绍 -->
+                <div>
+                    <div class="cyber-border bg-cyber-darker p-8 relative overflow-hidden">
+                        <div class="absolute bottom-0 left-0 w-40 h-40 bg-cyber-pink/10 rounded-full blur-3xl"></div>
+                        <div class="relative z-10">
+                            <h2 class="text-3xl font-cyber font-bold mb-6 flex items-center">
+                                <i class="fas fa-users text-cyber-pink mr-3"></i>
+                                <span>我们的团队</span>
+                            </h2>
+                            <p class="text-gray-300 mb-6">CyberContest 由一群热爱竞赛、热爱分享的大学生和教师共同创建。我们的团队成员来自不同学校、不同专业，但都有着共同的愿景：让每个大学生都能找到适合自己的竞赛舞台。</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                                <!-- 团队成员 1 -->
+                                <div class="bg-cyber-dark/70 p-4 cyber-border hover:shadow-neon-blue transition duration-300">
+                                    <div class="flex items-center mb-3">
+                                        <div class="w-12 h-12 bg-cyber-blue/20 rounded-full flex items-center justify-center mr-3">
+                                            <i class="fas fa-user-astronaut text-cyber-blue text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-white font-cyber">张明</h4>
+                                            <p class="text-gray-400 text-sm">创始人 & 技术总监</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-300 text-sm">计算机科学博士，曾获多项国际竞赛奖项，热衷于技术创新和知识分享。</p>
+                                </div>
+                                
+                                <!-- 团队成员 2 -->
+                                <div class="bg-cyber-dark/70 p-4 cyber-border hover:shadow-neon-pink transition duration-300">
+                                    <div class="flex items-center mb-3">
+                                        <div class="w-12 h-12 bg-cyber-pink/20 rounded-full flex items-center justify-center mr-3">
+                                            <i class="fas fa-user-astronaut text-cyber-pink text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-white font-cyber">李华</h4>
+                                            <p class="text-gray-400 text-sm">内容策划 & 运营</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-300 text-sm">传媒学院教师，拥有丰富的竞赛组织经验，负责平台内容建设和社区运营。</p>
+                                </div>
+                                
+                                <!-- 团队成员 3 -->
+                                <div class="bg-cyber-dark/70 p-4 cyber-border hover:shadow-neon-purple transition duration-300">
+                                    <div class="flex items-center mb-3">
+                                        <div class="w-12 h-12 bg-cyber-purple/20 rounded-full flex items-center justify-center mr-3">
+                                            <i class="fas fa-user-astronaut text-cyber-purple text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-white font-cyber">王强</h4>
+                                            <p class="text-gray-400 text-sm">资源总监</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-300 text-sm">创新创业导师，多次带队参加国家级竞赛并获奖，负责竞赛资源整合和合作对接。</p>
+                                </div>
+                                
+                                <!-- 团队成员 4 -->
+                                <div class="bg-cyber-dark/70 p-4 cyber-border hover:shadow-neon-yellow transition duration-300">
+                                    <div class="flex items-center mb-3">
+                                        <div class="w-12 h-12 bg-cyber-yellow/20 rounded-full flex items-center justify-center mr-3">
+                                            <i class="fas fa-user-astronaut text-cyber-yellow text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-white font-cyber">陈梦</h4>
+                                            <p class="text-gray-400 text-sm">UI/UX设计师</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-300 text-sm">设计学院研究生，多次获得设计类竞赛奖项，负责平台用户体验和界面设计。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section class="py-16 bg-gradient-to-b from-cyber-dark to-cyber-darker">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-cyber font-bold mb-10 text-center">
+                <i class="fas fa-paper-plane text-cyber-yellow mr-2"></i>
+                <span class="text-white">联系<span class="text-cyber-yellow">我们</span></span>
+            </h2>
+
+            <div class="max-w-4xl mx-auto cyber-border bg-cyber-darker p-8 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-40 h-40 bg-cyber-yellow/10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 w-40 h-40 bg-cyber-blue/10 rounded-full blur-3xl"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                    <!-- 左侧：联系信息 -->
+                    <div>
+                        <h3 class="text-xl font-cyber font-bold mb-6">联系方式</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="w-10 h-10 flex-shrink-0 bg-cyber-blue/20 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-envelope text-cyber-blue"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white font-cyber">电子邮件</p>
+                                    <p class="text-gray-400">contact@cybercontest.com</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-10 h-10 flex-shrink-0 bg-cyber-pink/20 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-map-marker-alt text-cyber-pink"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white font-cyber">地址</p>
+                                    <p class="text-gray-400">北京市海淀区中关村大街1号</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-10 h-10 flex-shrink-0 bg-cyber-purple/20 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-phone-alt text-cyber-purple"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white font-cyber">电话</p>
+                                    <p class="text-gray-400">+86 010-12345678</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="mt-8">
+                            <h3 class="text-xl font-cyber font-bold mb-4">关注我们</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-cyber-blue/20 rounded-full flex items-center justify-center text-cyber-blue hover:bg-cyber-blue/30 transition duration-300">
+                                    <i class="fab fa-weixin"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-cyber-pink/20 rounded-full flex items-center justify-center text-cyber-pink hover:bg-cyber-pink/30 transition duration-300">
+                                    <i class="fab fa-weibo"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-cyber-purple/20 rounded-full flex items-center justify-center text-cyber-purple hover:bg-cyber-purple/30 transition duration-300">
+                                    <i class="fab fa-qq"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-cyber-yellow/20 rounded-full flex items-center justify-center text-cyber-yellow hover:bg-cyber-yellow/30 transition duration-300">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：联系表单 -->
+                    <div>
+                        <h3 class="text-xl font-cyber font-bold mb-6">给我们留言</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label class="block text-sm font-cyber mb-2">您的姓名</label>
+                                <input type="text" class="w-full bg-cyber-dark border border-cyber-blue/30 text-white py-2 px-4 focus:outline-none focus:border-cyber-blue transition duration-300">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-cyber mb-2">电子邮件</label>
+                                <input type="email" class="w-full bg-cyber-dark border border-cyber-blue/30 text-white py-2 px-4 focus:outline-none focus:border-cyber-blue transition duration-300">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-cyber mb-2">留言内容</label>
+                                <textarea rows="5" class="w-full bg-cyber-dark border border-cyber-blue/30 text-white py-2 px-4 focus:outline-none focus:border-cyber-blue transition duration-300"></textarea>
+                            </div>
+                            <button type="submit" class="cyber-border bg-cyber-blue/10 hover:bg-cyber-blue/20 text-cyber-blue px-6 py-3 font-cyber transition duration-300 w-full">
+                                <i class="fas fa-paper-plane mr-2"></i> 发送留言
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 合作伙伴 -->
+    <section class="py-16 bg-cyber-darker">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-cyber font-bold mb-10 text-center">
+                <i class="fas fa-handshake text-cyber-blue mr-2"></i>
+                <span class="text-white">合作<span class="text-cyber-blue">伙伴</span></span>
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- 合作伙伴 1 -->
+                <div class="cyber-border bg-cyber-darker p-4 flex items-center justify-center hover:shadow-neon-blue transition duration-500">
+                    <div class="text-center">
+                        <div class="w-16 h-16 mx-auto bg-cyber-blue/10 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-university text-3xl text-cyber-blue"></i>
+                        </div>
+                        <h4 class="text-white font-cyber">北京大学</h4>
+                    </div>
+                </div>
+                
+                <!-- 合作伙伴 2 -->
+                <div class="cyber-border bg-cyber-darker p-4 flex items-center justify-center hover:shadow-neon-pink transition duration-500">
+                    <div class="text-center">
+                        <div class="w-16 h-16 mx-auto bg-cyber-pink/10 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-university text-3xl text-cyber-pink"></i>
+                        </div>
+                        <h4 class="text-white font-cyber">清华大学</h4>
+                    </div>
+                </div>
+                
+                <!-- 合作伙伴 3 -->
+                <div class="cyber-border bg-cyber-darker p-4 flex items-center justify-center hover:shadow-neon-purple transition duration-500">
+                    <div class="text-center">
+                        <div class="w-16 h-16 mx-auto bg-cyber-purple/10 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-building text-3xl text-cyber-purple"></i>
+                        </div>
+                        <h4 class="text-white font-cyber">科技创新中心</h4>
+                    </div>
+                </div>
+                
+                <!-- 合作伙伴 4 -->
+                <div class="cyber-border bg-cyber-darker p-4 flex items-center justify-center hover:shadow-neon-yellow transition duration-500">
+                    <div class="text-center">
+                        <div class="w-16 h-16 mx-auto bg-cyber-yellow/10 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-laptop-code text-3xl text-cyber-yellow"></i>
+                        </div>
+                        <h4 class="text-white font-cyber">未来科技公司</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <a href="#" class="cyber-border inline-block px-8 py-3 bg-cyber-blue/10 hover:bg-cyber-blue/20 text-cyber-blue transition duration-300 font-cyber">
+                    <i class="fas fa-plus mr-2"></i> 成为我们的合作伙伴
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-cyber-darker py-10 border-t border-cyber-blue/20">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-cyber font-bold text-white mb-4">CYBER<span class="text-cyber-pink">CONTEST</span></h3>
+                    <p class="text-gray-400 text-sm mb-4">为大学生提供最全面的竞赛资源和信息平台，助力你的竞技之旅。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-cyber-blue hover:text-cyber-pink transition duration-300">
+                            <i class="fab fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-cyber-blue hover:text-cyber-pink transition duration-300">
+                            <i class="fab fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-cyber-blue hover:text-cyber-pink transition duration-300">
+                            <i class="fab fa-qq text-xl"></i>
+                        </a>
+                        <a href="#" class="text-cyber-blue hover:text-cyber-pink transition duration-300">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-cyber font-bold mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-cyber-blue transition duration-300 text-sm">首页</a></li>
+                        <li><a href="competitions.html" class="text-gray-400 hover:text-cyber-blue transition duration-300 text-sm
